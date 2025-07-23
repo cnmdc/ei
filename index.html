@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bientôt disponible</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            
+            /* Opções de fundo - descomente a que preferir */
+            
+            /* Opção 1: Branco puro */
+            background-color: #ffffff;
+            color: #111827;
+            
+            /* Opção 2: Gradient branco-cinza muito suave */
+            /* background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #111827; */
+            
+            /* Opção 3: Gradient branco-azul muito claro */
+            /* background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            color: #111827; */
+            
+            /* Opção 4: Gradient branco-bege suave */
+            /* background: linear-gradient(135deg, #ffffff 0%, #fefdf8 100%);
+            color: #111827; */
+            
+            /* Opção 5: Cinza muito claro */
+            /* background-color: #fafafa;
+            color: #111827; */
+            
+            /* Opção 6: Gradient radial do centro (claro) */
+            /* background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+            color: #111827; */
+            
+            /* Opção 7: Off-white com toque azulado */
+            /* background-color: #fbfcfd;
+            color: #111827; */
+            
+            /* Opção 8: Gradient diagonal suave */
+            /* background: linear-gradient(135deg, #fefefe 0%, #f4f4f5 100%);
+            color: #111827; */
+            
+            /* === OPÇÕES DE FUNDO ESCURO === */
+            /* Descomente uma dessas e ajuste a cor do texto para #ffffff */
+            
+            /* Azul meia-noite */
+            /* background: linear-gradient(135deg, #0c1426 0%, #1e40af 100%);
+            color: #ffffff; */
+            
+            /* Roxo moderno */
+            /* background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: #ffffff; */
+            
+            /* Verde escuro sofisticado */
+            /* background: linear-gradient(135deg, #064e3b 0%, #0f766e 100%);
+            color: #ffffff; */
+            
+            /* Preto original */
+            /* background-color: #1A1A1A;
+            color: #ffffff; */
+        }
+
+        @media (min-width: 640px) {
+            body {
+                padding: 1.5rem;
+            }
+        }
+
+        .container {
+            max-width: 48rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            width: 8rem;
+            height: auto;
+        }
+
+        .heading {
+            font-size: 1.875rem;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .cursor {
+            color: #6b7280; /* Cinza para tema claro */
+            animation: pulse 2s infinite;
+        }
+
+        /* Para temas escuros, descomente esta linha */
+        /* .cursor {
+            color: rgba(255, 255, 255, 0.7);
+        } */
+
+        @keyframes pulse {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Media queries para responsividade - Mobile first */
+        @media (min-width: 640px) {
+            .heading {
+                font-size: 2.25rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                margin-bottom: 5rem;
+            }
+            
+            .logo {
+                width: 10rem;
+            }
+            
+            .heading {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .heading {
+                font-size: 3.75rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .heading {
+                font-size: 4.5rem;
+            }
+        }
+
+        /* Loading state para o logo */
+        .logo {
+            transition: opacity 0.3s ease;
+        }
+
+        .logo.loading {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="https://webmaster.ing/logo.png" 
+                 alt="Logo" 
+                 class="logo loading"
+                 id="logo"
+                 onload="this.classList.remove('loading')"
+                 onerror="this.style.display='none';">
+        </div>
+        
+        <!-- Texto com cursor piscando -->
+        <h1 class="heading">
+            Bientôt disponible<span class="cursor">|</span>
+        </h1>
+    </div>
+
+    <script>
+        // Garantir que o logo carregue corretamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('logo');
+            
+            // Remover classe loading quando o logo carregar
+            if (logo.complete) {
+                logo.classList.remove('loading');
+            }
+        });
+
+        // Função para trocar o fundo facilmente (opcional)
+        function changeBackground(option) {
+            const body = document.body;
+            const cursor = document.querySelector('.cursor');
+            
+            switch(option) {
+                case 'white':
+                    body.style.background = '#ffffff';
+                    body.style.color = '#111827';
+                    cursor.style.color = '#6b7280';
+                    break;
+                case 'gradient-blue':
+                    body.style.background = 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)';
+                    body.style.color = '#111827';
+                    cursor.style.color = '#6b7280';
+                    break;
+                case 'dark':
+                    body.style.background = '#1A1A1A';
+                    body.style.color = '#ffffff';
+                    cursor.style.color = 'rgba(255, 255, 255, 0.7)';
+                    break;
+                case 'blue-midnight':
+                    body.style.background = 'linear-gradient(135deg, #0c1426 0%, #1e40af 100%)';
+                    body.style.color = '#ffffff';
+                    cursor.style.color = 'rgba(255, 255, 255, 0.7)';
+                    break;
+            }
+        }
+
+        // Exemplo de uso: changeBackground('blue-midnight');
+    </script>
+</body>
+</html>
